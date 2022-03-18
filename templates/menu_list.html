@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="margin-left: 870px;">Menu</h2>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {% for menu in menu %}
+    <div class="col">
+        <div class="card" style="width: 40rem; margin: auto">
+            {% if menu.image %}
+                <img src="{{ menu.image.url }}" class="card-img-top" alt="...">
+            {% endif %}
+        <div class="card-body text-center">
+            <h5 class="card-title">{{ menu.name }}</h5>
+            <p class="card-text">{{ menu.price }} zł</p>
+            <a href="http://127.0.0.1:8000/restauracja_app/menu_details/{{ menu.id }}/" class="card-link">Więcej</a>
+                {% if perms.Restauracja_app.change_menu %}
+        <a class="card-link" href="{{ menu.get_update_menu }}">Edytuj</a>
+  {% endif %}
+  {% if perms.Restauracja_app.delete_menu %}
+        <a class="card-link" href="{{ menu.get_delete_menu }}">Usuń</a>
+{% endif %}
+        </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% if perms.Restauracja_app.add_menu %}
+    <div class="btn-group"><a
+                href="http://127.0.0.1:8000/restauracja_app/add_menu/" class="btn btn-warning">
+                Dodaj danie</a></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {% for cat in category %}
+    <div class="col">
+        <div class="card" style="width: 40rem; margin: auto">
+            {% if cat.image %}
+                <img src="{{ cat.image.url }}" class="card-img-top" alt="...">
+            {% endif %}
+        <div class="card-body text-center">
+              <h5 class="nav-link active"><a href="http://127.0.0.1:8000/restauracja_app/menu_list/{{ cat.slug }}">{{ cat.name }}</a></h5>
+
+            <p class="card-text">{{ cat.description }}</p>
+                {% if perms.Restauracja_app.change_category %}
+        <a class="card-link" href="{{ cat.get_absolute_url }}">Edytuj</a>
+  {% endif %}
+  {% if perms.Restauracja_app.delete_category %}
+        <a class="card-link" href="{{ cat.get_delete_url }}">Usuń</a>
+{% endif %}
+        </div>
+        </div>
+    </div>
+{% endfor %}
+    </div>
+{% endblock %}

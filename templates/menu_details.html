@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card mb-3">
+  <img src="{{ menu.image.url }}" class="card-img-top" style="height: 500px; width: 600px; margin: auto;" alt="...">
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ menu.name }}</h5>
+    <p class="card-text">{{ menu.description }}</p>
+    <p class="card-text">{{ menu.ingredients }}</p>
+    <p class="card-text">{{ menu.price }} zł</p>
+    <p class="card-text">Ocena: {{ menu.votes }}</p>
+<form action="" method="post">
+        {% csrf_token %}
+    <input type="hidden" name="recipe_id" value={{ recipe.id }}>
+        <button type="submit" name="vote" value="1" class="btn btn-success">
+             Polub przepis
+        </button>
+        <button type="submit" name="vote" value="-1" class="btn btn-danger">
+             Nie lubię przepisu
+        </button>
+</form>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="form_button" type="submit" name="dodaj" value="Dodaj">
+</form>
+      {% for i in comment %}
+      <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ i.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ i.author }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{ i.data_create }}</h6>
+    <p class="card-text">{{ i.text }}</p>
+  </div>
+</div>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -4,8 +4,8 @@
 :root {
   --link-color: #ff6600;
   --light-link-color: #131312;
-  --background-color: #4b4c4a;
-  --lighter-background-color: #5a615f;
+  --background-color: #9fcd9c;
+  --lighter-background-color: #d25a2e;
   --lighter-text-color: #9fa292;
   --dark-text: #000000;
   --blue: #007bff;
@@ -139,6 +139,8 @@ margin: 0 auto !important;
 
 .page-header {
   background: var(--background-color);
+    margin: auto;
+    height: auto;
 }
 
 .nav-link {
@@ -245,7 +247,7 @@ margin: 0 auto !important;
   height: auto;
   width: auto;
   background: var(--lighter-background-color);
-  margin: 5px;!important;
+  margin: 0.1px;!important;
   padding: 2px;
 }
 
@@ -480,7 +482,7 @@ margin: 0 auto !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: auto;
     width:500px;
     background-color: #d3d3d3;
     margin-top:2em;
@@ -592,10 +594,10 @@ margin: 0 auto !important;
 .dropdown:hover .dropbtn {background-color: var(--accent-color);}
 
 .text-form {
-    font-size:1.5em;
+    font-size: 1.5em;
     color: black;
     text-transform: uppercase;
     font-weight: 500;
     text-align: center;
-    margin:0.75em 0;
+    margin: 0.75em 0;
 }

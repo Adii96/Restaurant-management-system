@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load auth_extras %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <title>Zielony zakątek</title>
-    <link rel="stylesheet" href="{% static "basic.css" %}">
+    <link rel="stylesheet" href="{% static "base.css" %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
@@ -22,7 +23,10 @@
             </a>
             <ul class="nav nounderline text-uppercase">
                 <li class="nav-item ml-4">
-                    <a class="nav-link" href="http://127.0.0.1:8000/about/">O nas</a>
+                    <a class="nav-link" href="http://127.0.0.1:8000/restauracja_app/about/">O nas</a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a class="nav-link" href="http://127.0.0.1:8000/restauracja_app/table_list/">Zarezerwuj stolik</a>
                 </li>
                 <li class="nav-item ml-4">
                     <a class="nav-link" href="http://127.0.0.1:8000/restauracja_app/category/">Menu</a>
@@ -39,8 +43,18 @@
                     <a class="nav-link"  href="http://127.0.0.1:8000/accounts/logout/">Wyloguj</a>
                 </li>
                 {% endif %}
+                <li class="nav-item ml-4">
+                    <a class="nav-link"  href="http://127.0.0.1:8000/restauracja_app/order-details/">Koszyk</a>
+                </li>
+            {% if user.is_authenticated %}
+                <li>
+                    <p class="nav-link">Witaj: {{ user.first_name }}</p>
+                </li>
+            {% endif %}
             </ul>
+
 <div class="dropdown">
+{% if user.is_authenticated and request.user|has_group:"Pracownicy" %}
   <button class="dropbtn">Więcej</button>
   <div class="dropdown-content">
     {% if perms.Restauracja_app.add_category %}
@@ -49,9 +63,16 @@
     {% if perms.Restauracja_app.add_menu %}
         <a href="http://127.0.0.1:8000/restauracja_app/add_menu/">Dodaj Danie</a>
     {% endif %}
-    <a href="#">Link 3</a>
+  {% if perms.Restauracja_app.view_reserve %}
+    <a href="http://127.0.0.1:8000/restauracja_app/reserve_list/">Rezerwacje</a>
+  {% endif %}
+
+  <a href="http://127.0.0.1:8000/Waiter/waiter_index/">Obsługa kelnerska</a>
+
   </div>
+{% endif %}
 </div>
+
         </nav>
     </header>
     {% block content %}

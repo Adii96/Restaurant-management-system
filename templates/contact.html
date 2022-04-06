@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="form_box">
+<form method="post" class="form">
+	<div style="margin:80px">
+		<h1 class="form_title">Kontakt</h1>
+        {% csrf_token %}
+    {% for field in form %}
+    {{ field.label }}<br>
+    {{ field }}<br>
+        {% endfor %}
+            <button class="form_button" type="submit">Wyślij</button>
+    </div>
+</form>
+</section>
+{% endblock %}

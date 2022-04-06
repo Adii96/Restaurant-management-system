@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<header>
+    <h2>Lista Stolików </h2>
+<table class="table">
+    <thead class="table">
+      <tr>
+         <th>ID</th> <th>Nazwa Stolika</th> <th>Ilośc miejsc</th><th>Dostępność stolika na dzień {{ date }}</th>
+
+      </tr>
+   </thead>
+   <tbody>
+    {% for i in table %}
+        <td>{{ i.id }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.number_of_seats }}</td>
+        {% if i.reserved %}
+            <td>Zarezerowoany</td>
+        {% else %}
+            <td>Dostępny</td>
+        {% endif %}
+        {% if perms.Restauracja_app.change_table %}
+        <td><a href="{{ i.get_update_table }}">Edutyj</a> </td>
+        {% endif %}
+        {% if perms.Restauracja_app.delete_table %}
+        <td><a href="{{ i.get_delete_table }}">Usuń</a> </td>
+        {% endif %}
+        <td><a href="http://127.0.0.1:8000/restauracja_app/reserve/{{ i.id }}/">Rezerwuj</a></td>
+        </tbody>
+    {% endfor %}
+</table>
+<h3 style="text-align: center">LUB</h3>
+<h2 style="text-align: center"><a href="http://127.0.0.1:8000/restauracja_app/contact">Skontaktuj się z nami</a> </h2>
+</header>
+{% endblock %}

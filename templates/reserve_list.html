@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<header>
+    <h2>Lista rezerwacji </h2>
+<table class="table">
+    <thead class="table">
+      <tr>
+         <th>ID</th> <th>Nazwa Stolika</th> <th>Ilośc miejsc</th><th>Data</th><th>Czas</th><th>Nazwisko</th>
+
+      </tr>
+   </thead>
+   <tbody>
+    {% for i in reserve %}
+        <td>{{ i.id }}</td>
+        <td>{{ i.tables.name }}</td>
+        <td>{{ i.tables.number_of_seats }}</td>
+        <td>{{ i.date }}</td>
+        <td>{{ i.time }}</td>
+        <td>{{ i.last_name }}</td>
+        <td><a href="{{ i.get_delete_reserve }}">Zrealizowana</a> </td>
+
+    </tbody>
+
+    {% endfor %}
+</table>
+</header>
+{% endblock %}

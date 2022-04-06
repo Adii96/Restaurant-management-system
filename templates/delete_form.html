@@ -3,7 +3,7 @@
 <section class="form_box">
 <form class="form" method="post">
     {% csrf_token %}
-    <p class="text-form">Czy na pewno chcesz usunąć wybraną pozycję: {{ category.name }} {{ menu.name }}?</p>
+    <p class="text-form">Czy na pewno chcesz usunąć wybraną pozycję: {{ category.name }} {{ menu.name }} {{ table.name }}?</p>
     <input class="form_button" type="submit" value="Usuń">
     <a href="{{ view.get_success_url }}" class="form_button">Cancel</a>
 

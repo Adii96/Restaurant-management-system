@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <section class="last-info-section padding-small" id="contact">
+        <img style="width: 1000px; height: 450px; margin-left: 410px" src="{% static 'zjdęcie.jpg' %}" alt="..."><br>
+<br><h4>Restauracja powstała w 2022. Jest odpowiedzią na głosy mieszkańców i marzeń właścieli. Nasza resturacja od zawsze preferuje świeże warzywa i owoce z pobliskich upraw.
+Naszym najważniejszym piorytetem jest zadowolenie klienta - Gdy widzimy powracających klientów jak i nowych którzy przychodzą z polecania to wiemy,
+      że nasza praca się doceniana i chcemy robić jeszcze więcej. </h4> <br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="mb-4">Kontakt</h3>
+                    <p> tel: 000-000-000</p>
+                    <p>email: zielonyzakatek@wp.pl</p>
+                    <p><a style="color: white" href="http://127.0.0.1:8000/restauracja_app/contact">Napisz do nas</a> </p>
+                </div>
+                <div class="col pl-4 ml-4">
+                    <h3 class="mb-4">Adres</h3>
+                        <p>Ulica Zielona 10</p>
+                        <p>61-000 Poznań</p>
+                </div>
+                <div class="col pl-4 ml-4">
+                    <h3 class="mb-4">Godziny otwarcia</h3>
+                        <p>Poniedziałek: 12-22</p>
+                        <p>Wtorek-Czwartek: 10-22</p>
+                        <p>Piątek-Sobota: 10-24</p>
+                        <p>Niedziela: 12-21</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}

@@ -25,4 +25,5 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('restauracja_app/', include('Restauracja_app.urls')),
     path('accounts/', include('Accounts.urls')),
+    path('Waiter/', include('Waiter.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

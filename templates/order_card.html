@@ -23,13 +23,13 @@
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
             <td>{{ meal_item.meal.name }}</td>
-            <td>${{ meal_item.meal.price|floatformat:2}}</td>
+            <td>{{ meal_item.meal.price|floatformat:2}}zł</td>
             <td>
 
                 {{ meal_item.quantity }}
                 <a href="{% url 'add-to-cart' meal_item.meal.pk %}"><i class="fas fa-plus ml-2"></i></a>
             </td>
-            <td>${{ meal_item.get_total_item_price|floatformat:2}}
+            <td>{{ meal_item.get_total_item_price|floatformat:2}}zł
              <a href="{% url 'remove-from-cart' meal_item.meal.pk %}">
                 <i class="fas fa-trash float-right text-danger"></i>
              </a>
@@ -51,12 +51,16 @@
         {% if order.get_total_price %}
         <tr>
             <td colspan="4"><b>Razem do zapłaty</b></td>
-            <td>${{ order.get_total_price|floatformat:2 }}</td>
+            <td>{{ order.get_total_price|floatformat:2 }}zł</td>
         </tr>
          <tr>
             <td colspan="5">
-{#                <a href="{% url 'checkout' %}" class="btn btn-warning float-right ml-2">Checkout</a>#}
                 <a href="http://127.0.0.1:8000/restauracja_app/category/" class="btn btn-primary float-right">Kontynuuj Zapupy </a>
+            </td>
+         </tr>
+         <tr>
+         <td colspan="5">
+                <a href="" class="btn btn-primary float-right">Przejdz do kasy </a>
             </td>
         </tr>
 

@@ -1,12 +1,7 @@
 import datetime
-
-from django.contrib.auth.models import User, Group
-from django.test import TestCase
 import pytest
 from django.test import Client
 from django.urls import reverse
-from django.utils import timezone
-
 from Restauracja_app.forms import Add_CategoryModelForm, Add_MenuModelForm
 from Restauracja_app.models import Category, Menu, Reserve, Table
 

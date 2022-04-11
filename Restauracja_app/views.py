@@ -1,20 +1,15 @@
 import datetime
-
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User, AnonymousUser
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.utils import timezone
 from django.views import View
-from django.views.generic import UpdateView, DeleteView, ListView
-
+from django.views.generic import UpdateView, DeleteView
 from Restauracja_app.forms import Add_CategoryModelForm,\
     Add_MenuModelForm, TableModelForm, CommentsForm, ContactForm
-from Restauracja_app.models import Category, Menu, Table, Reserve, Comments, OrderItem, Order
+from Restauracja_app.models import Category, Menu, Table, Reserve, Comments, Order
 from django.core.mail import send_mail, BadHeaderError
 
 class IndexView(View):
@@ -40,8 +35,7 @@ class Add_CategoryView(View):
 class CategoryView(View):
     def get(self, request):
         category = Category.objects.all()
-        menu = Menu.objects.all()
-        return render(request, 'category.html', {'category': category, 'menu': menu})
+        return render(request, 'category.html', {'category': category})
 
 
 class UpdateCategoryView(UpdateView):
@@ -189,9 +183,10 @@ class ReserveList(View):
         reserve = Reserve.objects.all().order_by('time')
         return render(request, 'reserve_list.html', {'reserve': reserve})
 
-class ReserveDelete(DeleteView):
+class Reserve_realized(UpdateView):
     model = Reserve
-    template_name = 'delete_form.html'
+    template_name = 'edit_form.html'
+    fields = 'realized',
     success_url = reverse_lazy('reserve_list')
 
 
@@ -220,9 +215,8 @@ class AboutView(View):
 class Order_Details_View(LoginRequiredMixin, View):
     def get(self, request):
         try:
-            order = Order.objects.get(user=request.user, ordered=False)
+            order = Order.objects.get(user=request.user)
             return render(request, 'order_card.html', {'order': order})
         except ObjectDoesNotExist:
-            messages.error(self.request, "Nie masz zamówienia")
             return redirect("/")
 

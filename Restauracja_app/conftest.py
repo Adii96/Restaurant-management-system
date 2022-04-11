@@ -1,5 +1,3 @@
-import datetime
-
 import pytest
 from django.contrib.auth.models import User
 from Restauracja_app.models import Category, Menu, Table, Comments

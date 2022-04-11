@@ -5,37 +5,22 @@
   <img src="{{ menu.image.url }}" class="card-img-top" style="height: 500px; width: 600px; margin: auto;" alt="...">
 {% endif %}
   <div class="card-body text-center">
-  {% if messages %}
-    {% for message in messages %}
-    <h3 style="color: darkolivegreen;">{{ message }} </h3>
-    {% endfor %}
-{% endif %}
     <h5 class="card-title">{{ menu.name }}</h5>
     <p class="card-text">{{ menu.description }}</p>
     <p class="card-text">{{ menu.ingredients }}</p>
     <p class="card-text">{{ menu.price }} zł</p>
     <p class="card-text">Ocena: {{ menu.votes }}</p>
-  {% comment %} <form class="d-flex justify-content-left">
-              <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
-
-            </form> {% endcomment %}
-
-            <a href="{{ menu.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >Dodaj do koszyka
-                <i class="fas fa-shopping-cart ml-1"></i>
-            </a>
+    <a href="{{ menu.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >Dodaj do koszyka
+                <i class="fas fa-shopping-cart ml-1"></i></a>
 
 <form action="" method="post">
         {% csrf_token %}
     <input type="hidden" name="recipe_id" value={{ recipe.id }}>
         <button type="submit" name="vote" value="1" class="btn btn-success">
-             Polub przepis
+             Lubię To &#128077;
         </button>
-        <button type="submit" name="vote" value="-1" class="btn btn-danger">
-             Nie lubię przepisu
+        <button type="submit" name="vote" value="-1" class="btn btn-danger thumbs up sign">
+             Nie Lubię &#128078;
         </button>
 </form>
   <h3 class="form_title">Dodaj komentarz</h3>
@@ -55,9 +40,9 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{ i.title }}</h5>
-        <p class="card-text">{{ i.author }}</p>
-        <p class="card-text">{{ i.text }}</p>
+        <h5 class="card-title">Tytuł:<br>{{ i.title }}</h5>
+        <p class="card-text">Autor:<br>{{ i.author }}</p>
+        <p class="card-text">Komentarz:<br>{{ i.text }}</p>
       </div>
     </div>
   </div>

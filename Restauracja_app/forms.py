@@ -1,9 +1,6 @@
 from django import forms
-from django.core.exceptions import ValidationError
-from django.utils.html import linebreaks
+from .models import Category, Menu, Table, Comments
 
-from .models import Category, Menu, Table, Reserve, Comments
-from django.utils.safestring import mark_safe
 
 
 class Add_MenuModelForm(forms.ModelForm):

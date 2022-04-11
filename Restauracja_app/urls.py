@@ -3,7 +3,7 @@ from django.urls import path
 from Restauracja_app.views import CategoryView, Menu_AddView, \
     Menu_listView, Add_CategoryView, UpdateCategoryView, DeleteCategoryView, \
     UpdateMenuView, DeleteMenuView, Menu_Details, TableListView, ReserveView, \
-    ReserveList, UpdateTableView, DeleteTableView, AboutView, Order_Details_View, ReserveDelete, Contact_View
+    ReserveList, UpdateTableView, DeleteTableView, AboutView, Order_Details_View, Reserve_realized, Contact_View
 from Restauracja_app.cart import add_to_cart, remove_from_cart
 
 urlpatterns = [
@@ -19,7 +19,7 @@ urlpatterns = [
     path('table_list/', TableListView.as_view(), name='table_list'),
     path('reserve/<int:id>/', ReserveView.as_view(), name='reserve'),
     path('reserve_list/', ReserveList.as_view(), name='reserve_list'),
-    path('delete_reserve/<int:pk>/', ReserveDelete.as_view(), name='delete_reserve'),
+    path('realized_reserve/<int:pk>/', Reserve_realized.as_view(), name='realized_reserve'),
     path('update_table/<int:pk>/', UpdateTableView.as_view(), name='update_table'),
     path('delete_table/<int:pk>/', DeleteTableView.as_view(), name='delete_table'),
     path('about/', AboutView.as_view(), name='about'),

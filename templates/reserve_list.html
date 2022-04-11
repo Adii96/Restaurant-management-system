@@ -5,7 +5,7 @@
 <table class="table">
     <thead class="table">
       <tr>
-         <th>ID</th> <th>Nazwa Stolika</th> <th>Ilośc miejsc</th><th>Data</th><th>Czas</th><th>Nazwisko</th>
+         <th>ID</th> <th>Nazwa Stolika</th> <th>Ilośc miejsc</th><th>Data</th><th>Czas</th><th>Nazwisko</th><th>Zrealizowana</th>
 
       </tr>
    </thead>
@@ -17,7 +17,9 @@
         <td>{{ i.date }}</td>
         <td>{{ i.time }}</td>
         <td>{{ i.last_name }}</td>
-        <td><a href="{{ i.get_delete_reserve }}">Zrealizowana</a> </td>
+        <td>{{ i.realized|yesno }}
+        </td>
+        <td><a href="{{ i.get_realized_reserve }}">Zrealizowana</a> </td>
 
     </tbody>
 

@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -104,14 +102,14 @@ class Reserve(models.Model):
     time = models.TimeField()
     last_name = models.CharField(max_length=64)
     tables = models.ForeignKey(Table, on_delete=models.CASCADE)
+    realized = models.BooleanField(default=False, help_text='Nie')
 
-    def get_delete_reserve(self):
-        return reverse('delete_reserve', args=(self.pk,))
+    def get_realized_reserve(self):
+        return reverse('realized_reserve', args=(self.pk,))
 
 
 class OrderItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ordered = models.BooleanField(default=True)
     meal = models.ForeignKey(Menu, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
@@ -127,7 +125,6 @@ class Order(models.Model):
     meals = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     order_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
